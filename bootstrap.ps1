@@ -1,18 +1,29 @@
-# bootstrap.ps1
-# Launcher principale - scarica ed esegue il tuo tool
-
+# bootstrap.ps1 - Launcher definitivo
 $ErrorActionPreference = "Stop"
 
-# URL del file principale (lo metteremo nel passo successivo)
+# URL del tool principale (GIÀ CORRETTO)
 $toolUrl = "https://raw.githubusercontent.com/Frafri-11/MyTweakTool/main/MyTweakTool.ps1"
 
-# Percorso temporaneo locale
+# Percorso temporaneo
 $temp = Join-Path $env:TEMP "MyTweakTool.ps1"
 
-# Scarica il tool
-Write-Host "[+] Download del tool in corso..."
-Invoke-WebRequest -Uri $toolUrl -OutFile $temp -UseBasicParsing
+Write-Host "[+] Scarico il tool da:"
+Write-Host "    $toolUrl"
+Write-Host ""
 
-# Avvia il tool
-Write-Host "[+] Avvio del tool..."
+try {
+    Invoke-WebRequest -Uri $toolUrl -OutFile $temp -UseBasicParsing
+}
+catch {
+    Write-Host "[ERRORE] Download fallito:"
+    Write-Host "         $($_.Exception.Message)"
+    exit 1
+}
+
+if (-not (Test-Path $temp) -or (Get-Item $temp).Length -eq 0) {
+    Write-Host "[ERRORE] File scaricato vuoto o mancante."
+    exit 1
+}
+
+Write-Host "[+] Download completato. Avvio del tool..."
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File $temp
