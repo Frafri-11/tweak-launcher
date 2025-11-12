@@ -4,7 +4,7 @@
 $ErrorActionPreference = "Stop"
 
 # URL del file principale (lo metteremo nel passo successivo)
-$toolUrl = "https://raw.githubusercontent.com/TUONOME/MyTweakTool/main/MyTweakTool.ps1"
+$toolUrl = "https://raw.githubusercontent.com/Frafri-11/MyTweakTool/main/MyTweakTool.ps1"
 
 # Percorso temporaneo locale
 $temp = Join-Path $env:TEMP "MyTweakTool.ps1"
