@@ -5,7 +5,7 @@ $ErrorActionPreference = "Stop"
 
 # URL diretto al file MyTweakTool.ps1 nel tuo repository privato
 # (per ora metti un segnaposto, lo sostituiremo nel passo 3)
-$toolUrl = "https://raw.githubusercontent.com/TUOUSER/My-tweaktool/main/MyTweakTool.ps1"
+$toolUrl = https://raw.githubusercontent.com/Frafri-11/tweak-launcher/main/bootstrap.ps1
 
 # Scarica il file temporaneamente
 $temp = Join-Path $env:TEMP "MyTweakTool.ps1"
